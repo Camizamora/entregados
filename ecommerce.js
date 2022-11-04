@@ -7,7 +7,7 @@ let producto = parseInt(
 let totalCompra = 0;
 let decision;
 
-// CLASS
+const productosArray = [];
 
 class NewProduct {
   constructor(id, name, price, gr) {
@@ -17,25 +17,20 @@ class NewProduct {
     this.gr = gr;
   }
 }
-const redbourbon = new NewProduct(1, "RedBourbon", 2500, 250);
-const chiapas = new NewProduct(2, "Chiapas", 2500, 250);
-const santander = new NewProduct(3, "Santander", 2500, 250);
-const sierranevada = new NewProduct(4, "SierraNevada", 2500, 250);
-const valledupar = new NewProduct(1, "Valledupar", 2500, 250);
+
+const redbourbon = new NewProduct(0, "RedBourbon", 2500, 250);
+productosArray.push(redbourbon);
+const chiapas = new NewProduct(1, "Chiapas", 2500, 250);
+productosArray.push(chiapas);
+const santander = new NewProduct(2, "Santander", 2500, 250);
+productosArray.push(santander);
+const sierranevada = new NewProduct(3, "SierraNevada", 2500, 250);
+productosArray.push(sierranevada);
+const valledupar = new NewProduct(4, "Valledupar", 2500, 250);
+productosArray.push(valledupar);
 
 while (seguirComprando === true) {
-  if (producto === redbourbon.id) {
-    totalCompra = totalCompra + redbourbon.price;
-  } else if (producto === chiapas.id) {
-    totalCompra = totalCompra + chiapas.price;
-  } else if (producto === santander.id) {
-    totalCompra = totalCompra + santander.price;
-  } else if (producto === sierranevada.id) {
-    totalCompra = totalCompra + sierranevada.price;
-  } else {
-    totalCompra = totalCompra + valledupar.price;
-  }
-
+  totalCompra = totalCompra + productosArray[producto - 1].price;
   decision = parseInt(prompt("Quieres seguir comprando? 1.Si - 2.No"));
   if (decision === 1) {
     producto = parseInt(
