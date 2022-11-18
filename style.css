@@ -1,0 +1,16 @@
+h1 {
+  margin-left: 40%;
+}
+
+.css {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cardProducto {
+  width:200px;
+  margin: 5px
+}

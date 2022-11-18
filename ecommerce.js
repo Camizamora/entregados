@@ -1,63 +1,64 @@
-let seguirComprando = true;
-let producto = parseInt(
-  prompt(
-    "Elige la variedad del cafe que deseas adquirir: 1.Red Bourbon - 2.Chiapas - 3.Santander - 4.Sierra Nevada - 5.Valledupar"
-  )
-);
-let totalCompra = 0;
-let decision;
-
-const productosArray = [];
-
-class NewProduct {
-  constructor(id, name, price, gr) {
+class Producto {
+  constructor(id, nombre, precio) {
     this.id = id;
-    this.name = name;
-    this.price = price;
-    this.gr = gr;
+    this.nombre = nombre;
+    this.precio = precio;
   }
 }
 
-const redbourbon = new NewProduct(0, "RedBourbon", 2500, 250);
-productosArray.push(redbourbon);
-const chiapas = new NewProduct(1, "Chiapas", 2500, 250);
-productosArray.push(chiapas);
-const santander = new NewProduct(2, "Santander", 2500, 250);
-productosArray.push(santander);
-const sierranevada = new NewProduct(3, "SierraNevada", 2500, 250);
-productosArray.push(sierranevada);
-const valledupar = new NewProduct(4, "Valledupar", 2500, 250);
-productosArray.push(valledupar);
+const producto1 = new Producto(1, "RedBourbon", 2500);
+const producto2 = new Producto(2, "Chiapas", 2500);
+const producto3 = new Producto(3, "Santander", 2500);
+const producto4 = new Producto(4, "SierraNevada", 2500);
+const producto5 = new Producto(5, "Valledupar", 2500);
 
-while (seguirComprando === true) {
-  totalCompra = totalCompra + productosArray[producto - 1].price;
-  decision = parseInt(prompt("Quieres seguir comprando? 1.Si - 2.No"));
-  if (decision === 1) {
-    producto = parseInt(
-      prompt(
-        "Elige la variedad del cafe que deseas adquirir: 1.Red Bourbon - 2.Chiapas - 3.Santander - 4.Sierra Nevada - 5.Valledupar"
-      )
+const productosArray = [producto1, producto2, producto3, producto4, producto5];
+
+const divProductos = document.querySelector("#divProductos");
+
+productosArray.forEach((producto) => {
+  divProductos.innerHTML += `
+    <div id="${producto.id}" class="card cardProducto">
+    <div class="card-body">
+    <h5 class="card-title">${producto.nombre}</h5>
+    <p class="card-text">$${producto.precio}</p>
+    <button id="${producto.id}" class="btn btn-secondary">AGREGAR</button>
+    </div>
+    </div>
+    `;
+});
+
+const carrito = [];
+const botonesAgregar = document.querySelectorAll(".btn-secondary");
+
+botonesAgregar.forEach((boton) => {
+  boton.onclick = () => {
+    const producto = productosArray.find(
+      (prod) => prod.id === parseInt(boton.id)
     );
-  } else {
-    seguirComprando = false;
-  }
-}
 
-const totalCompraConDescuento = descuento(totalCompra);
+    const productoCarrito = {
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      cantidad: 1,
+    };
 
-function descuento(valor) {
-  let descuento = 0;
-  if (valor <= 2500) {
-    descuento = 0;
-  } else if ((valor) => 5000 && valor <= 10000) {
-    descuento = 10;
-  } else if (valor > 10000) {
-    descuento = 15;
-  }
+    const indexCarrito = carrito.findIndex((prod) => prod.id === producto.id);
 
-  let valorDescuento = valor * (descuento / 100);
-  let valorFinal = valor - valorDescuento;
-  return valorFinal;
-}
+    if (indexCarrito === -1) {
+      carrito.push(productoCarrito);
+    } else {
+      carrito[indexCarrito].cantidad += 1;
+    }
+    console.log(carrito);
+  };
+});
 
-alert(`El total de tu compra es ${totalCompraConDescuento}`);
+const botonFinalizar = document.querySelector("#finalizar");
+botonFinalizar.onclick = () => {
+  const totalCompra = carrito
+    .map((prod) => prod.precio * prod.cantidad)
+    .reduce((elem1, elem2) => elem1 + elem2);
+  alert(`El total de tu compra es ${totalCompra}`);
+};
