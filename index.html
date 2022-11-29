@@ -16,19 +16,19 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./style.css"/>
   </head>
-  <body>
+  <body class="container">
 
-      <h1>PRODUCTOS</h1>
+      <h1 class="text-center">TIENDA</h1>
       <hr>
-      <div class="css">
-        <div class="card col-xl-3 col-md-6 col-sm-12 css" id="divProductos"></div>
-      </div>
+      <div id="divProductos" class="row"></div>
       <hr>
-      <div class="css">
-        <button class="btn btn-success" id="finalizar">FINALIZAR COMPRA</button>
-      </div>
+      <button class="btn colorBoton" id="miCarrito">Mi carrito</button>
+      <button class="btn colorBoton" id="vaciarCarrito">Vaciar carrito</button>
+      <div id="divCarrito" class="row"></div>
+      <hr>
+      <h2>El total de la compra es de<span id="totalCompra"></span></h2>
 
-    <script src="ecommerce.js"></script>
+    <script src="index.js"></script>
   
   </body>
 </html>

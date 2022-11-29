@@ -1,16 +1,22 @@
-h1 {
-  margin-left: 40%;
+.imgProductos {
+  width: 150px;
+  height: 200px;
+  object-fit: contain;
+  margin-top: 1rem;
 }
 
-.css {
+.card {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 0.5rem;
 }
 
-.cardProducto {
-  width:200px;
-  margin: 5px
+.colorBoton {
+  color: white;
+  background-color: black;
+}
+
+.colorBoton:hover {
+  background-color: blueviolet;
+  color: white;
 }
